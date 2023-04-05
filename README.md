@@ -1,0 +1,1 @@
+# FFxiv_collect_app
