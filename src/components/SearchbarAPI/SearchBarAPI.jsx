@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect } from "react";
+import { useState } from "react";
 
-import './SearchBarAPI.css';
-import CharacterResults from '../CharacterResults/CharacterResults';
+import "./SearchBarAPI.css";
+import CharacterResults from "../CharacterResults/CharacterResults";
 
-const SearchBar = () => {
-  console.clear()
+const SearchBar = (props) => {
+  console.clear();
   // a debouncer should be changed out for a proper react hook
-  const [input, setIput] = useState('');
-  const [characters, setCharacters] = useState('');
+  const [input, setIput] = useState("");
+  const [characters, setCharacters] = useState("");
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (input != '') {
+      if (input !== "") {
         getCharacterID(input);
       }
     }, 500);
@@ -24,7 +24,7 @@ const SearchBar = () => {
   };
 
   function getCharacterID(name) {
-    fetch('https://xivapi.com/character/search?name=' + name)
+    fetch("https://xivapi.com/character/search?name=" + name)
       .then((Response) => Response.json())
       .then(function (data) {
         setCharacters(data.Results);
@@ -43,7 +43,11 @@ const SearchBar = () => {
       </div>
       <div>
         <ul>
-          <CharacterResults characters={characters} />
+          <CharacterResults
+            characters={characters}
+            searchResultHook={props.searchResultHook}
+            setSearchResultHook={props.setSearchResultHook}
+          />
         </ul>
       </div>
     </div>

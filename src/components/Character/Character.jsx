@@ -1,10 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import './style.css';
+import "./style.css";
 
 function Character(props) {
   return (
-    <div className="character-item">
+    <div
+      className="character-item"
+      onClick={(e) => props.onClick((e.target.value = props.id))}
+    >
       <img src={props.avatar} />
       <div className="text-container">
         <h3>{props.name}</h3>
