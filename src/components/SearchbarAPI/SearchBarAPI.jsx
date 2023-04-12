@@ -4,7 +4,7 @@ import { useState } from "react";
 import "./SearchBarAPI.css";
 import CharacterResults from "../CharacterResults/CharacterResults";
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   console.clear();
   // a debouncer should be changed out for a proper react hook
   const [input, setIput] = useState("");
@@ -15,7 +15,7 @@ const SearchBar = () => {
       if (input !== "") {
         getCharacterID(input);
       } else {
-        setCharacters('');
+        setCharacters("");
       }
     }, 500);
     return () => clearTimeout(timer);
