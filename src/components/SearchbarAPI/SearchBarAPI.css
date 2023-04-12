@@ -1,0 +1,19 @@
+.character-select {
+  width: 100%;
+  min-height: 100vh;
+  height: fit-content;
+  background-color: blueviolet;
+}
+
+.input-wrapper {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: -webkit-fill-available;
+}
+
+.input-wrapper > input {
+  width: 100%;
+  padding-inline: 20px;
+  font-size: 32px;
+  padding-block: 5px;
+}
