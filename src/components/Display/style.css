@@ -1,0 +1,6 @@
+.mount-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 50%;
+  gap: 0.25em;
+}
