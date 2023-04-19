@@ -21,6 +21,8 @@
 }
 .mount {
   display: block;
+  min-width: 40px;
+  aspect-ratio: 1/1;
 }
 .owned {
   border-color: greenyellow;

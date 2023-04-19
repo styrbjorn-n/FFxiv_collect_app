@@ -1,6 +1,19 @@
 .mount-wrapper {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  max-width: 50%;
-  gap: 0.25em;
+  gap: 1rem;
+  margin: 0 12px;
+}
+@media screen and (min-width: 664px) {
+  .mount-wrapper {
+    gap: 0.5rem;
+    margin: 0px 24px;
+  }
+}
+@media screen and (min-width: 1014px) {
+  .mount-wrapper {
+    gap: 0.25rem;
+    margin: 0px 64px;
+  }
 }
