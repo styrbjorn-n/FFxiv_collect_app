@@ -1,6 +1,19 @@
 .slider {
   height: 100vh;
   background-color: cadetblue;
-  display: none;
   z-index: 1;
+  position: absolute;
+  top: 0;
+  transform: translateX(0%);
+  transition-property: transform;
+  transition-duration: 500ms;
+}
+.active {
+  transform: translateX(100%);
+}
+
+button {
+  border: none;
+  font-size: 32px;
+  background-color: transparent;
 }

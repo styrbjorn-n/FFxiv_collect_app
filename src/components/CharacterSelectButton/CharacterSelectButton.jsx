@@ -5,19 +5,18 @@ import './style.css';
 import SearchBar from '../SearchbarAPI/SearchBarAPI';
 
 const CharacterSelectButton = () => {
-  const [slider, setSlider] = useState(false);
+  const [isActive, setActive] = useState(false);
 
   const toggleSlider = () => {
-    setSlider(!slider);
-    console.log(slider);
+    setActive(!isActive);
   };
   return (
     <>
       <button className="openSlider" onClick={toggleSlider}>
         Select Character
       </button>
-      <div className={slider && 'slider'}>
-               <button className="closeSlider" onClick={toggleSlider}>
+      <div className={isActive ? 'active slider' : 'slider'}>
+        <button className="closeSlider" onClick={toggleSlider}>
           Close
         </button>
         <SearchBar></SearchBar>
