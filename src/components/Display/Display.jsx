@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { SearchContext } from "../../Context";
 import { useContext } from "react";
+import Mount from "../Mount/Mount";
+import "./style.css";
 const Display = () => {
   const { searchResult } = useContext(SearchContext);
   const [ownedMounts, setOwnedMounts] = useState([]);
@@ -39,16 +41,20 @@ const Display = () => {
   }, [searchResult]);
 
   return (
-    <div>
+    <div className="mount-wrapper">
       {error ||
         (ownedMounts.length &&
           ownedMounts?.map((mount, i) => {
-            return <img key={i} src={mount.icon} alt="" />;
+            return (
+              <Mount owned={true} icon={mount.icon} tooltip={mount.tooltip} />
+            );
           }))}
       {error ||
         (missingMounts.length &&
           missingMounts?.map((mount, i) => {
-            return <img key={i} src={mount.icon} alt="" />;
+            return (
+              <Mount owned={false} icon={mount.icon} tooltip={mount.tooltip} />
+            );
           }))}
     </div>
   );
