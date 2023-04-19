@@ -1,6 +1,6 @@
 .character-select {
   width: 100%;
-  max-height: 50vh;
+  max-height: 100vh;
   height: fit-content;
   background-color: blueviolet;
 }
@@ -16,4 +16,7 @@
   padding-inline: 20px;
   font-size: 32px;
   padding-block: 5px;
+}
+.input-wrapper > select {
+  width: 100%;
 }

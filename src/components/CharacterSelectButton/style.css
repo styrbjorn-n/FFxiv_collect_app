@@ -1,0 +1,6 @@
+.slider {
+  height: 100vh;
+  background-color: cadetblue;
+  display: none;
+  z-index: 1;
+}
