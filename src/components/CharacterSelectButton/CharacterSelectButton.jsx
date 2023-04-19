@@ -17,7 +17,7 @@ const CharacterSelectButton = () => {
       </button>
       <div className={isActive ? 'active slider' : 'slider'}>
         <button className="closeSlider" onClick={toggleSlider}>
-          Close
+          close
         </button>
         <SearchBar></SearchBar>
       </div>
