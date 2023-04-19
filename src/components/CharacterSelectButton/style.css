@@ -2,7 +2,7 @@
   height: 100vh;
   background-color: cadetblue;
   z-index: 1;
-  position: absolute;
+  position: fixed;
   top: 0;
   transform: translateX(0%);
   transition-property: transform;
