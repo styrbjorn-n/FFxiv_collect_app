@@ -46,14 +46,24 @@ const Display = () => {
         (ownedMounts.length &&
           ownedMounts?.map((mount, i) => {
             return (
-              <Mount owned={true} icon={mount.icon} tooltip={mount.tooltip} />
+              <Mount
+                owned={true}
+                icon={mount.icon}
+                tooltip={mount.tooltip}
+                key={i}
+              />
             );
           }))}
       {error ||
         (missingMounts.length &&
           missingMounts?.map((mount, i) => {
             return (
-              <Mount owned={false} icon={mount.icon} tooltip={mount.tooltip} />
+              <Mount
+                owned={false}
+                icon={mount.icon}
+                tooltip={mount.tooltip}
+                key={i}
+              />
             );
           }))}
     </div>
