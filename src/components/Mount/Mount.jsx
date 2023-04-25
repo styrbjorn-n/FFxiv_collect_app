@@ -7,6 +7,10 @@ function Mount(props) {
       className={
         props.owned ? "mount-container owned" : "mount-container missing"
       }
+      onClick={(e) => {
+        console.log(props.id);
+        props.onClick((e.target.value = props.mount));
+      }}
     >
       <div className="tooltip">{props.tooltip}</div>
       <img src={props.icon} alt="" className="mount" />
