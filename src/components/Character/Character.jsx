@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useContext } from 'react';
 
-import "./style.css";
+import './style.css';
+import { CharacterSelectMenuContext } from '../../Context';
 
 function Character(props) {
+  const { setActive } = useContext(CharacterSelectMenuContext);
+
   return (
     <div
       className="character-item"
-      onClick={(e) => props.onClick((e.target.value = props.id))}
+      onClick={(e) => {
+        props.onClick((e.target.value = props.id));
+        setActive(false);
+      }}
     >
       <img src={props.avatar} />
       <div className="text-container">

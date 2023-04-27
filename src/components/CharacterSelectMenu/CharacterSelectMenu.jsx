@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
-
 import './style.css';
 import SearchBar from '../SearchbarAPI/SearchBarAPI';
+import { CharacterSelectMenuContext } from '../../Context';
 
 const CharacterSelectButton = () => {
   const [isActive, setActive] = useState(false);
@@ -12,6 +12,8 @@ const CharacterSelectButton = () => {
   };
   return (
     <>
+      <CharacterSelectMenuContext.Provider value={{isActive, setActive}}>
+
       <button className="openSlider" onClick={toggleSlider}>
         Select Character
       </button>
@@ -21,6 +23,7 @@ const CharacterSelectButton = () => {
         </button>
         <SearchBar></SearchBar>
       </div>
+        </CharacterSelectMenuContext.Provider>
     </>
   );
 };

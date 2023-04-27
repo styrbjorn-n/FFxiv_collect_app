@@ -4,7 +4,7 @@ import SearchBarAPI from './components/SearchbarAPI/SearchBarAPI';
 import { useState } from 'react';
 import { SearchContext } from './Context';
 import CharacterResults from './components/CharacterResults/CharacterResults';
-import CharacterSelectButton from './components/CharacterSelectButton/CharacterSelectButton';
+import CharacterSelectButton from './components/CharacterSelectMenu/CharacterSelectMenu';
 
 function App() {
   const [searchResult, setSearchResult] = useState(29013370);
