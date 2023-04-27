@@ -20,3 +20,6 @@
 .input-wrapper > select {
   width: 100%;
 }
+.defualt-server-value {
+  display: none;
+}

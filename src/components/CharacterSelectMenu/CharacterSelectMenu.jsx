@@ -5,7 +5,7 @@ import SearchBar from '../SearchbarAPI/SearchBarAPI';
 import { CharacterSelectMenuContext } from '../../Context';
 
 const CharacterSelectButton = () => {
-  const [isActive, setActive] = useState(false);
+  const [isActive, setActive] = useState(true);
 
   const toggleSlider = () => {
     setActive(!isActive);

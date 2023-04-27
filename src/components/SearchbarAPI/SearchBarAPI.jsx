@@ -38,6 +38,8 @@ const SearchBar = (props) => {
       });
   }
 
+  const light = ['Alpha','Lich','Odin','Phoenix','Raiden','Shiva','twintania','zodiark'];
+
   return (
     <CharacterSelectSearchbar.Provider value={{input, setInput}}>
       <div className="character-select">
@@ -49,7 +51,7 @@ const SearchBar = (props) => {
             onChange={handelNameChange}
           />
           <select onChange={handelServerChange}>
-            <option value=""></option>
+            <option className='defualt-server-value' value="">Server</option>
             <option value="alpha">Alpha</option>
             <option value="lich">Lich</option>
             <option value="odin">Odin</option>
@@ -61,9 +63,7 @@ const SearchBar = (props) => {
           </select>
         </div>
         <div>
-          <ul>
             <CharacterResults characters={characters} />
-          </ul>
         </div>
       </div>
     </CharacterSelectSearchbar.Provider>
