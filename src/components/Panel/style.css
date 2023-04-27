@@ -1,5 +1,5 @@
 .background {
-  position: absolute;
+  position: fixed;
   z-index: 10;
   inset: 0;
   background-color: rgba(60, 60, 60, 0.6);
@@ -7,39 +7,44 @@
 .panel {
   position: fixed;
   background-color: #c6c6c6;
-  inset: 1rem;
+  inset: 3rem;
   display: flex;
   flex-direction: column;
+  gap: 3rem;
   align-items: flex-start;
   overflow-y: scroll;
+  padding: 1rem 1rem;
+  z-index: 100;
 }
-.image-container {
-  position: relative;
+.panel-top {
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
-.image-container img {
-  object-position: center;
+.name {
+  font-size: 2rem;
 }
-.image-container p {
-  position: absolute;
-  font-size: 1.5rem;
-  top: 1rem;
-  left: 1rem;
-}
-.image-container button {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  color: white;
-}
-
 .description {
   max-width: 40ch;
   text-align: left;
 }
+.close-panel-btn {
+  padding: 0.5rem 1rem;
+  border: solid;
+  border-width: 1px;
+  transition: 0.25s;
+}
+.close-panel-btn:hover {
+  background-color: #f9f9f9;
+}
+.panel img {
+  align-self: center;
+}
 @media screen and (min-width: 664px) {
   .panel {
-    inset: 3rem;
+    inset: 4rem;
   }
 }
 @media screen and (min-width: 1024px) {
