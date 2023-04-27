@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 
 import './style.css';
-import { CharacterSelectMenuContext } from '../../Context';
+import { CharacterSelectMenuContext, CharacterSelectSearchbar } from '../../Context';
 
 function Character(props) {
   const { setActive } = useContext(CharacterSelectMenuContext);
+  const { setInput } = useContext(CharacterSelectSearchbar);
 
   return (
     <div
@@ -12,6 +13,7 @@ function Character(props) {
       onClick={(e) => {
         props.onClick((e.target.value = props.id));
         setActive(false);
+        setInput('');
       }}
     >
       <img src={props.avatar} />

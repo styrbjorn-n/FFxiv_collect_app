@@ -1,27 +1,25 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-
 import './SearchBarAPI.css';
 import CharacterResults from '../CharacterResults/CharacterResults';
+import { CharacterSelectSearchbar } from '../../Context';
 
 const SearchBar = (props) => {
   console.clear();
   // a debouncer should be changed out for a proper react hook
-  const [input, setIput] = useState('');
+  const [input, setInput] = useState('');
   const [characters, setCharacters] = useState('');
   const [server, setServer] = useState('');
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (input !== '') {
         getCharacterID(input, server);
-      }
     }, 500);
     return () => clearTimeout(timer);
   }, [input]);
 
   const handelNameChange = (e) => {
-    setIput(e.target.value);
+    setInput(e.target.value);
   };
 
   const handelServerChange = (e) => {
@@ -41,32 +39,34 @@ const SearchBar = (props) => {
   }
 
   return (
-    <div className="character-select">
-      <div className="input-wrapper">
-        <input
-          type="text"
-          placeholder="Character name..."
-          value={input}
-          onChange={handelNameChange}
-        />
-        <select onChange={handelServerChange}>
-          <option value=""></option>
-          <option value="alpha">Alpha</option>
-          <option value="lich">Lich</option>
-          <option value="odin">Odin</option>
-          <option value="phoenix">Phoenix</option>
-          <option value="raiden">Raiden</option>
-          <option value="Shiva">Shiva</option>
-          <option value="twintania">Twintania</option>
-          <option value="zodiark">Zodiark</option>
-        </select>
+    <CharacterSelectSearchbar.Provider value={{input, setInput}}>
+      <div className="character-select">
+        <div className="input-wrapper">
+          <input
+            type="text"
+            placeholder="Character name..."
+            value={input}
+            onChange={handelNameChange}
+          />
+          <select onChange={handelServerChange}>
+            <option value=""></option>
+            <option value="alpha">Alpha</option>
+            <option value="lich">Lich</option>
+            <option value="odin">Odin</option>
+            <option value="phoenix">Phoenix</option>
+            <option value="raiden">Raiden</option>
+            <option value="Shiva">Shiva</option>
+            <option value="twintania">Twintania</option>
+            <option value="zodiark">Zodiark</option>
+          </select>
+        </div>
+        <div>
+          <ul>
+            <CharacterResults characters={characters} />
+          </ul>
+        </div>
       </div>
-      <div>
-        <ul>
-          <CharacterResults characters={characters} />
-        </ul>
-      </div>
-    </div>
+    </CharacterSelectSearchbar.Provider>
   );
 };
 
