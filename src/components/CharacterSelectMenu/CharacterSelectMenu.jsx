@@ -1,8 +1,8 @@
-import React from 'react';
-import { useState } from 'react';
-import './style.css';
-import SearchBar from '../SearchbarAPI/SearchBarAPI';
-import { CharacterSelectMenuContext } from '../../Context';
+import React from "react";
+import { useState } from "react";
+import "./style.css";
+import SearchBar from "../SearchbarAPI/SearchBarAPI";
+import { CharacterSelectMenuContext } from "../../Context";
 
 const CharacterSelectButton = () => {
   const [isActive, setActive] = useState(true);
@@ -16,7 +16,7 @@ const CharacterSelectButton = () => {
         <button className="openSlider" onClick={toggleSlider}>
           Select Character
         </button>
-        <div className={isActive ? 'active slider' : 'slider'}>
+        <div className={isActive ? "active slider" : "slider"}>
           <button className="closeSlider" onClick={toggleSlider}>
             &#9747;
           </button>

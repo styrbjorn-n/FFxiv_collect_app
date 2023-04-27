@@ -32,28 +32,15 @@
 }
 
 button {
-  border: none;
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+  margin-bottom: 2rem;
   font-size: 32px;
-  background-color: transparent;
+  background-color: #c6c6c6;
   align-self: flex-end;
+  border: solid;
+  transition: 0.25s;
 }
-
-.openSlider {
-  background-color: #c6c6c6;
-  padding-block: 8px;
-  padding-inline: 12px;
-  border-radius: 50px;
-  margin-inline: 8px;
-  margin-top: 8px;
-  margin-bottom: 25px;
-}
-
-.closeSlider {
-  background-color: #c6c6c6;
-  padding-block: 6px;
-  padding-inline: 15px;
-  border-radius: 100%;
-  margin-inline: 8px;
-  margin-top: 8px;
-  margin-bottom: 25px;
+button:hover {
+  background-color: #f9f9f9;
 }

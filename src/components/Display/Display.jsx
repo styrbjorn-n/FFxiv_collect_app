@@ -6,7 +6,7 @@ import Mount from "../Mount/Mount";
 import "./style.css";
 import Panel from "../Panel/Panel";
 const Display = () => {
-  const { searchResult } = useContext(SearchContext);
+  const { searchResult, setSearchResult } = useContext(SearchContext);
   const [ownedMounts, setOwnedMounts] = useState([]);
   const [missingMounts, setMissingMounts] = useState([]);
   const [activeMount, setActiveMount] = useState(undefined);
@@ -40,7 +40,7 @@ const Display = () => {
       getOwnedMounts(searchResult);
       getMissingMounts(searchResult);
     }
-  }, [searchResult]);
+  }, [searchResult, activeMount]);
 
   useEffect(() => {
     const getActiveMount = async (id) => {
@@ -55,12 +55,14 @@ const Display = () => {
           }
         });
     };
-    console.log("effects here we are");
     if (activeMount) {
       getActiveMount();
     }
-  }, [activeMount, setActiveMount]);
-
+  }, [activeMount]);
+  const closePanel = () => {
+    setActiveMount(false);
+    // setSearchResult(searchResult);
+  };
   return (
     <div className="mount-wrapper">
       {error ||
@@ -83,6 +85,7 @@ const Display = () => {
           missingMounts?.map((mount, i) => {
             return (
               <Mount
+                mount={mount}
                 owned={false}
                 icon={mount.icon}
                 tooltip={mount.tooltip}
@@ -93,6 +96,8 @@ const Display = () => {
           }))}
       {activeMount && (
         <Panel
+          activeMount={activeMount}
+          setActiveMount={closePanel}
           name={activeMount.name}
           image={activeMount.image}
           description={activeMount.description}
