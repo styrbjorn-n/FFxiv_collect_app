@@ -38,8 +38,6 @@ const SearchBar = (props) => {
       });
   }
 
-  const light = ['Alpha','Lich','Odin','Phoenix','Raiden','Shiva','twintania','zodiark'];
-
   return (
     <CharacterSelectSearchbar.Provider value={{input, setInput}}>
       <div className="character-select">
