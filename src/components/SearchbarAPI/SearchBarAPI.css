@@ -11,14 +11,13 @@
   width: -webkit-fill-available;
 }
 
-.input-wrapper > input {
+.input-wrapper > input,
+.input-wrapper > select {
   width: 100%;
   padding-inline: 20px;
   font-size: 32px;
   padding-block: 5px;
-}
-.input-wrapper > select {
-  width: 100%;
+  margin-bottom: 1rem;
 }
 .defualt-server-value {
   display: none;

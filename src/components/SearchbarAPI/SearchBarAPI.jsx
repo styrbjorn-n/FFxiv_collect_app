@@ -13,7 +13,7 @@ const SearchBar = (props) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-        getCharacterID(input, server);
+      getCharacterID(input, server);
     }, 500);
     return () => clearTimeout(timer);
   }, [input]);
@@ -38,8 +38,31 @@ const SearchBar = (props) => {
       });
   }
 
+  const dataCenters = [
+    'Aether',
+    'Chaos',
+    'Crystal',
+    'Dynamis',
+    'Elemental',
+    'Gaia',
+    'Korea',
+    'Light',
+    'Mana',
+    'Materia',
+    'Meteor',
+    'Primal',
+    '猫小胖',
+    '莫古力',
+    '豆豆柴',
+    '陆行鸟',
+  ];
+
+  let listItems = dataCenters.map((item) => {
+    <option value={item}>{item}</option>;
+  });
+
   return (
-    <CharacterSelectSearchbar.Provider value={{input, setInput}}>
+    <CharacterSelectSearchbar.Provider value={{ input, setInput }}>
       <div className="character-select">
         <div className="input-wrapper">
           <input
@@ -48,8 +71,8 @@ const SearchBar = (props) => {
             value={input}
             onChange={handelNameChange}
           />
-          <select onChange={handelServerChange}>
-            <option className='defualt-server-value' value="">Server</option>
+          <select id="dataCenters">{listItems}</select>
+          <select id="servers" onChange={handelServerChange}>
             <option value="alpha">Alpha</option>
             <option value="lich">Lich</option>
             <option value="odin">Odin</option>
@@ -61,7 +84,7 @@ const SearchBar = (props) => {
           </select>
         </div>
         <div>
-            <CharacterResults characters={characters} />
+          <CharacterResults characters={characters} />
         </div>
       </div>
     </CharacterSelectSearchbar.Provider>
