@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './SearchBarAPI.css';
 import CharacterResults from '../CharacterResults/CharacterResults';
 import { CharacterSelectSearchbar } from '../../Context';
+import ServerOptions from '../ServerOptions/ServerOptions';
 
 const SearchBar = (props) => {
   console.clear();
@@ -10,6 +11,7 @@ const SearchBar = (props) => {
   const [input, setInput] = useState('');
   const [characters, setCharacters] = useState('');
   const [server, setServer] = useState('');
+  const [dataCenter, setDataCenter] = useState('');
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -22,8 +24,8 @@ const SearchBar = (props) => {
     setInput(e.target.value);
   };
 
-  const handelServerChange = (e) => {
-    setServer(e.target.value);
+  const handelDataCenterChange = (e) => {
+    setDataCenter(e.target.value);
   };
 
   function getCharacterID(name, server) {
@@ -38,29 +40,6 @@ const SearchBar = (props) => {
       });
   }
 
-  const dataCenters = [
-    'Aether',
-    'Chaos',
-    'Crystal',
-    'Dynamis',
-    'Elemental',
-    'Gaia',
-    'Korea',
-    'Light',
-    'Mana',
-    'Materia',
-    'Meteor',
-    'Primal',
-    '猫小胖',
-    '莫古力',
-    '豆豆柴',
-    '陆行鸟',
-  ];
-
-  let listItems = dataCenters.map((item) => {
-    <option value={item}>{item}</option>;
-  });
-
   return (
     <CharacterSelectSearchbar.Provider value={{ input, setInput }}>
       <div className="character-select">
@@ -71,17 +50,28 @@ const SearchBar = (props) => {
             value={input}
             onChange={handelNameChange}
           />
-          <select id="dataCenters">{listItems}</select>
-          <select id="servers" onChange={handelServerChange}>
-            <option value="alpha">Alpha</option>
-            <option value="lich">Lich</option>
-            <option value="odin">Odin</option>
-            <option value="phoenix">Phoenix</option>
-            <option value="raiden">Raiden</option>
-            <option value="Shiva">Shiva</option>
-            <option value="twintania">Twintania</option>
-            <option value="zodiark">Zodiark</option>
+          <select id="dataCenters" onChange={handelDataCenterChange}>
+            <option value={''} className="defualt-server-value">
+              Data Center
+            </option>
+            <option value="Aether">Aether</option>
+            <option value="Chaos">Chaos</option>
+            <option value="Crystal">Crystal</option>
+            <option value="Dynamis">Dynamis</option>
+            <option value="Elemental">Elemental</option>
+            <option value="Gaia">Gaia</option>
+            <option value="Korea">Korea</option>
+            <option value="Light">Light</option>
+            <option value="Mana">Mana</option>
+            <option value="Materia">Materia</option>
+            <option value="Meteor">Meteor</option>
+            <option value="Primal">Primal</option>
+            <option value="猫小胖">猫小胖</option>
+            <option value="莫古力">莫古力</option>
+            <option value="豆豆柴">豆豆柴</option>
+            <option value="陆行鸟">陆行鸟</option>
           </select>
+          <ServerOptions dataCenter={dataCenter} setServer={setServer} />
         </div>
         <div>
           <CharacterResults characters={characters} />

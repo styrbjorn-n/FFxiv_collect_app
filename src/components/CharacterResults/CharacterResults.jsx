@@ -1,12 +1,12 @@
-import React from "react";
-import "./style.css";
-import Character from "../Character/Character";
-import { useContext } from "react";
-import { SearchContext } from "../../Context";
+import React from 'react';
+import './style.css';
+import Character from '../Character/Character';
+import { useContext } from 'react';
+import { SearchContext } from '../../Context';
 function CharacterResults(props) {
   const { setSearchResult } = useContext(SearchContext);
-  console.log(setSearchResult);
-  if (props.characters !== "" && props.characters !== undefined) {
+  //console.log(setSearchResult);
+  if (props.characters !== '' && props.characters !== undefined) {
     let dataItems = props.characters.slice(0, 5).map((character, i) => (
       <li key={i}>
         <Character
