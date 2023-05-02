@@ -1,19 +1,21 @@
 import './App.css';
 import Display from './components/Display/Display';
-import SearchBarAPI from './components/SearchbarAPI/SearchBarAPI';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { SearchContext } from './Context';
-import CharacterResults from './components/CharacterResults/CharacterResults';
 import CharacterSelectButton from './components/CharacterSelectMenu/CharacterSelectMenu';
+import { CharacterSelectMenuContext } from './Context';
 
 function App() {
   const [searchResult, setSearchResult] = useState(29013370);
+  const [isActive, setActive] = useState(true);
   return (
     <div className="App">
-      <SearchContext.Provider value={{ searchResult, setSearchResult }}>
-        <CharacterSelectButton />
-        <Display />
-      </SearchContext.Provider>
+      <CharacterSelectMenuContext.Provider value={{ isActive, setActive }}>
+        <SearchContext.Provider value={{ searchResult, setSearchResult }}>
+          <CharacterSelectButton />
+          <Display />
+        </SearchContext.Provider>
+      </CharacterSelectMenuContext.Provider>
     </div>
   );
 }

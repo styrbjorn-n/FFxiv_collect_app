@@ -5,12 +5,14 @@ import { useContext } from "react";
 import Mount from "../Mount/Mount";
 import "./style.css";
 import Panel from "../Panel/Panel";
+import { CharacterSelectMenuContext } from '../../Context';
 const Display = () => {
   const { searchResult, setSearchResult } = useContext(SearchContext);
   const [ownedMounts, setOwnedMounts] = useState([]);
   const [missingMounts, setMissingMounts] = useState([]);
   const [activeMount, setActiveMount] = useState(undefined);
   const [error, setError] = useState(null);
+  const { isActive } = useContext(CharacterSelectMenuContext);
   useEffect(() => {
     const getOwnedMounts = async (id) => {
       fetch(`https://ffxivcollect.com/api/characters/${id}/mounts/owned`)
@@ -64,7 +66,7 @@ const Display = () => {
     // setSearchResult(searchResult);
   };
   return (
-    <div className="mount-wrapper">
+    <div className={isActive ? 'mount-wrapper active' : 'mount-wrapper'}>
       {error ||
         (ownedMounts.length &&
           ownedMounts?.map((mount, i) => {

@@ -9,6 +9,9 @@
   background-color: #3c3c3c;
   min-height: 100vh;
 }
+.active {
+  display: none;
+}
 @media screen and (min-width: 640px) {
   .mount-wrapper {
     gap: 0.5rem;
