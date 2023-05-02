@@ -9,11 +9,14 @@ import { CharacterSelectMenuContext } from "../../Context";
 import classNames from "classnames";
 const Display = () => {
   const { searchResult, setSearchResult } = useContext(SearchContext);
+  const { isActive } = useContext(CharacterSelectMenuContext);
+
   const [ownedMounts, setOwnedMounts] = useState([]);
   const [missingMounts, setMissingMounts] = useState([]);
+  const [mounts, setMounts] = useState([]);
   const [activeMount, setActiveMount] = useState(undefined);
   const [error, setError] = useState(null);
-  const { isActive } = useContext(CharacterSelectMenuContext);
+
   useEffect(() => {
     const getOwnedMounts = (id) => {
       fetch(`https://ffxivcollect.com/api/characters/${id}/mounts/owned`)
@@ -48,7 +51,7 @@ const Display = () => {
       missingMounts.map((mount) => {
         mount.isOwned = false;
       });
-      const mounts = ownedMounts.concat(missingMounts);
+      setMounts(ownedMounts.concat(missingMounts));
     }
   }, [searchResult, activeMount]);
 
@@ -83,27 +86,13 @@ const Display = () => {
         }
       >
         {error ||
-          (ownedMounts.length &&
-            ownedMounts?.map((mount, i) => {
+          (mounts.length &&
+            mounts.map((mount, i) => {
               return (
                 <Mount
                   mount={mount}
-                  owned={true}
+                  owned={mount.isOwned}
                   id={mount.id}
-                  icon={mount.icon}
-                  tooltip={mount.name}
-                  key={i}
-                  onClick={setActiveMount}
-                />
-              );
-            }))}
-        {error ||
-          (missingMounts.length &&
-            missingMounts?.map((mount, i) => {
-              return (
-                <Mount
-                  mount={mount}
-                  owned={false}
                   icon={mount.icon}
                   tooltip={mount.name}
                   key={i}
