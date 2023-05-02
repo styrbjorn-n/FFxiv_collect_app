@@ -1,13 +1,16 @@
-import React, { useContext } from "react";
-import "./style.css";
+import React, { useContext } from 'react';
+import './style.css';
 import {
   CharacterSelectMenuContext,
   CharacterSelectSearchbar,
-} from "../../Context";
+  UserGuide,
+} from '../../Context';
 
 function Character(props) {
   const { setActive } = useContext(CharacterSelectMenuContext);
   const { setInput } = useContext(CharacterSelectSearchbar);
+  const { setSelected } = useContext(UserGuide);
+  let count = 0;
 
   return (
     <div
@@ -15,7 +18,11 @@ function Character(props) {
       onClick={(e) => {
         props.onClick((e.target.value = props.id));
         setActive(false);
-        setInput("");
+        setInput('');
+        if (count < 1) {
+          setSelected(true);
+          count++;
+        }
       }}
     >
       <img src={props.avatar} />
