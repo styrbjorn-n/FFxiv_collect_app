@@ -6,7 +6,6 @@ import { CharacterSelectSearchbar } from '../../Context';
 import ServerOptions from '../ServerOptions/ServerOptions';
 
 const SearchBar = (props) => {
-  console.clear();
   // a debouncer should be changed out for a proper react hook
   const [input, setInput] = useState('');
   const [characters, setCharacters] = useState('');
@@ -15,7 +14,9 @@ const SearchBar = (props) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      getCharacterID(input, server);
+      if (input) {
+        getCharacterID(input, server);
+      }
     }, 500);
     return () => clearTimeout(timer);
   }, [input]);
