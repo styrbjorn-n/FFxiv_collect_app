@@ -9,6 +9,7 @@ function Mount(props) {
       }
       onClick={(e) => {
         props.onClick((e.target.value = props.mount));
+        document.body.style.overflowY = "hidden";
       }}
     >
       <div className="tooltip">{props.tooltip}</div>

@@ -6,6 +6,7 @@ import Mount from "../Mount/Mount";
 import "./style.css";
 import Panel from "../Panel/Panel";
 import { CharacterSelectMenuContext } from "../../Context";
+import classNames from "classnames";
 const Display = () => {
   const { searchResult, setSearchResult } = useContext(SearchContext);
   const [ownedMounts, setOwnedMounts] = useState([]);
@@ -41,6 +42,13 @@ const Display = () => {
     if (searchResult) {
       getOwnedMounts(searchResult);
       getMissingMounts(searchResult);
+      ownedMounts.map((mount) => {
+        mount.isOwned = true;
+      });
+      missingMounts.map((mount) => {
+        mount.isOwned = false;
+      });
+      const mounts = ownedMounts.concat(missingMounts);
     }
   }, [searchResult, activeMount]);
 
@@ -61,11 +69,19 @@ const Display = () => {
   }, []);
   const closePanel = () => {
     setActiveMount(false);
-    // setSearchResult(searchResult);
+    document.body.style.overflowY = "visible";
   };
   return (
     <>
-      <div className={isActive ? "mount-wrapper active" : "mount-wrapper"}>
+      <div
+        className={
+          "mount-wrapper " +
+          classNames({
+            active: isActive,
+            panelOpen: activeMount,
+          })
+        }
+      >
         {error ||
           (ownedMounts.length &&
             ownedMounts?.map((mount, i) => {

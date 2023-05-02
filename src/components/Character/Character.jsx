@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
-
-import './style.css';
-import { CharacterSelectMenuContext, CharacterSelectSearchbar } from '../../Context';
+import React, { useContext } from "react";
+import "./style.css";
+import {
+  CharacterSelectMenuContext,
+  CharacterSelectSearchbar,
+} from "../../Context";
 
 function Character(props) {
   const { setActive } = useContext(CharacterSelectMenuContext);
@@ -13,13 +15,13 @@ function Character(props) {
       onClick={(e) => {
         props.onClick((e.target.value = props.id));
         setActive(false);
-        setInput('');
+        setInput("");
       }}
     >
       <img src={props.avatar} />
       <div className="text-container">
         <h3>{props.name}</h3>
-        <p>Lodestone ID: {props.id}</p>
+        <p>{props.server}</p>
       </div>
     </div>
   );

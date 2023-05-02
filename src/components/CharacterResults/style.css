@@ -6,3 +6,6 @@
   flex-direction: column;
   gap: 5px;
 }
+li {
+  list-style-type: none;
+}

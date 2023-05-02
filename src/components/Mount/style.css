@@ -10,7 +10,6 @@
 }
 .tooltip {
   z-index: 50;
-  min-width: 10em;
   border-radius: 0.4rem;
   border-color: #3c3c3c;
   border: solid;
