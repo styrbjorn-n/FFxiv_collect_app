@@ -85,8 +85,9 @@ const Display = () => {
           })
         }
       >
-        {error ||
-          (mounts.length &&
+        {error
+          ? "choose a character"
+          : mounts.length > 0 &&
             mounts.map((mount, i) => {
               return (
                 <Mount
@@ -99,7 +100,7 @@ const Display = () => {
                   onClick={setActiveMount}
                 />
               );
-            }))}
+            })}
       </div>
       {activeMount && (
         <Panel
