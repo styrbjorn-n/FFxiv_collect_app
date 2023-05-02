@@ -5,7 +5,7 @@ import { useContext } from "react";
 import Mount from "../Mount/Mount";
 import "./style.css";
 import Panel from "../Panel/Panel";
-import { CharacterSelectMenuContext } from '../../Context';
+import { CharacterSelectMenuContext } from "../../Context";
 const Display = () => {
   const { searchResult, setSearchResult } = useContext(SearchContext);
   const [ownedMounts, setOwnedMounts] = useState([]);
@@ -66,7 +66,7 @@ const Display = () => {
     // setSearchResult(searchResult);
   };
   return (
-    <div className={isActive ? 'mount-wrapper active' : 'mount-wrapper'}>
+    <div className={isActive ? "mount-wrapper active" : "mount-wrapper"}>
       {error ||
         (ownedMounts.length &&
           ownedMounts?.map((mount, i) => {
@@ -76,7 +76,7 @@ const Display = () => {
                 owned={true}
                 id={mount.id}
                 icon={mount.icon}
-                tooltip={mount.tooltip}
+                tooltip={mount.name}
                 key={i}
                 onClick={setActiveMount}
               />
@@ -90,7 +90,7 @@ const Display = () => {
                 mount={mount}
                 owned={false}
                 icon={mount.icon}
-                tooltip={mount.tooltip}
+                tooltip={mount.name}
                 key={i}
                 onClick={setActiveMount}
               />

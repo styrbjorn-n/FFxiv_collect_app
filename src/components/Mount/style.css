@@ -3,8 +3,6 @@
   border: solid;
   position: relative;
   display: flex;
-  /* flex-direction: column;
-  align-items: center; */
   background-color: #3c3c3c;
 }
 .mount-container:hover > .tooltip {
@@ -14,6 +12,8 @@
   z-index: 50;
   min-width: 10em;
   border-radius: 0.4rem;
+  border-color: #3c3c3c;
+  border: solid;
   position: absolute;
   visibility: hidden;
   background-color: #c6c6c6;
