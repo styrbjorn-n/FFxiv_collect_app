@@ -3,6 +3,7 @@
   z-index: 10;
   inset: 0;
   background-color: rgba(60, 60, 60, 0.6);
+  overscroll-behavior: contain;
 }
 .panel {
   position: fixed;
@@ -16,6 +17,7 @@
   overflow-x: hidden;
   padding: 1rem 1rem;
   z-index: 100;
+  overscroll-behavior: contain;
 }
 .panel-top {
   width: 100%;

@@ -8,7 +8,6 @@ function Mount(props) {
         props.owned ? "mount-container owned" : "mount-container missing"
       }
       onClick={(e) => {
-        console.log(props.id);
         props.onClick((e.target.value = props.mount));
       }}
     >

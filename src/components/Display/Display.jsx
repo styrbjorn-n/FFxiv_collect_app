@@ -14,7 +14,7 @@ const Display = () => {
   const [error, setError] = useState(null);
   const { isActive } = useContext(CharacterSelectMenuContext);
   useEffect(() => {
-    const getOwnedMounts = async (id) => {
+    const getOwnedMounts = (id) => {
       fetch(`https://ffxivcollect.com/api/characters/${id}/mounts/owned`)
         .then((Response) => Response.json())
         .then((data) => {
@@ -26,7 +26,7 @@ const Display = () => {
           }
         });
     };
-    const getMissingMounts = async (id) => {
+    const getMissingMounts = (id) => {
       fetch(`https://ffxivcollect.com/api/characters/${id}/mounts/missing`)
         .then((Response) => Response.json())
         .then((data) => {
@@ -46,56 +46,56 @@ const Display = () => {
 
   useEffect(() => {
     const getActiveMount = async (id) => {
-      fetch(`https://ffxivcollect.com/api/mounts/${id}`)
-        .then((Response) => Response.json())
-        .then((data) => {
-          if (data.error) {
-            setError(data.error);
-          } else {
-            setError(null);
-            setActiveMount(data[0]);
-          }
-        });
+      const res = await fetch(`https://ffxivcollect.com/api/mounts/${id}`);
+      const data = await res.json();
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setError(null);
+        setActiveMount(data[0]);
+      }
     };
     if (activeMount) {
-      getActiveMount();
+      getActiveMount(activeMount.id);
     }
-  }, [activeMount]);
+  }, []);
   const closePanel = () => {
     setActiveMount(false);
     // setSearchResult(searchResult);
   };
   return (
-    <div className={isActive ? "mount-wrapper active" : "mount-wrapper"}>
-      {error ||
-        (ownedMounts.length &&
-          ownedMounts?.map((mount, i) => {
-            return (
-              <Mount
-                mount={mount}
-                owned={true}
-                id={mount.id}
-                icon={mount.icon}
-                tooltip={mount.name}
-                key={i}
-                onClick={setActiveMount}
-              />
-            );
-          }))}
-      {error ||
-        (missingMounts.length &&
-          missingMounts?.map((mount, i) => {
-            return (
-              <Mount
-                mount={mount}
-                owned={false}
-                icon={mount.icon}
-                tooltip={mount.name}
-                key={i}
-                onClick={setActiveMount}
-              />
-            );
-          }))}
+    <>
+      <div className={isActive ? "mount-wrapper active" : "mount-wrapper"}>
+        {error ||
+          (ownedMounts.length &&
+            ownedMounts?.map((mount, i) => {
+              return (
+                <Mount
+                  mount={mount}
+                  owned={true}
+                  id={mount.id}
+                  icon={mount.icon}
+                  tooltip={mount.name}
+                  key={i}
+                  onClick={setActiveMount}
+                />
+              );
+            }))}
+        {error ||
+          (missingMounts.length &&
+            missingMounts?.map((mount, i) => {
+              return (
+                <Mount
+                  mount={mount}
+                  owned={false}
+                  icon={mount.icon}
+                  tooltip={mount.name}
+                  key={i}
+                  onClick={setActiveMount}
+                />
+              );
+            }))}
+      </div>
       {activeMount && (
         <Panel
           activeMount={activeMount}
@@ -108,7 +108,7 @@ const Display = () => {
           onClick={setActiveMount}
         />
       )}
-    </div>
+    </>
   );
 };
 
