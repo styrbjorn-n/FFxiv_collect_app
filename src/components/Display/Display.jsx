@@ -11,48 +11,51 @@ const Display = () => {
   const { searchResult, setSearchResult } = useContext(SearchContext);
   const { isActive } = useContext(CharacterSelectMenuContext);
 
-  const [ownedMounts, setOwnedMounts] = useState([]);
-  const [missingMounts, setMissingMounts] = useState([]);
+  // const [ownedMounts, setOwnedMounts] = useState([]);
+  // const [missingMounts, setMissingMounts] = useState([]);
   const [mounts, setMounts] = useState([]);
   const [activeMount, setActiveMount] = useState(undefined);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getOwnedMounts = (id) => {
-      fetch(`https://ffxivcollect.com/api/characters/${id}/mounts/owned`)
-        .then((Response) => Response.json())
-        .then((data) => {
-          if (data.error) {
-            setError(data.error);
-          } else {
-            setError(null);
-            setOwnedMounts(data);
-          }
+    const getMounts = async () => {
+      if (searchResult) {
+        const ownedMountsData = await fetch(
+          `https://ffxivcollect.com/api/characters/${searchResult}/mounts/owned`
+        )
+          .then((Response) => Response.json())
+          .then((data) => {
+            if (data.error) {
+              setError(data.error);
+            } else {
+              setError(null);
+              return data;
+            }
+          });
+        const missingMountsData = await fetch(
+          `https://ffxivcollect.com/api/characters/${searchResult}/mounts/missing`
+        )
+          .then((Response) => Response.json())
+          .then((data) => {
+            if (data.error) {
+              setError(data.error);
+            } else {
+              setError(null);
+              return data;
+            }
+          });
+        const finalOwnedData = ownedMountsData.map((mount) => {
+          mount.isOwned = true;
+          return mount;
         });
-    };
-    const getMissingMounts = (id) => {
-      fetch(`https://ffxivcollect.com/api/characters/${id}/mounts/missing`)
-        .then((Response) => Response.json())
-        .then((data) => {
-          if (data.error) {
-            setError(data.error);
-          } else {
-            setError(null);
-            setMissingMounts(data);
-          }
+        const finalMissingData = missingMountsData.map((mount) => {
+          mount.isOwned = false;
+          return mount;
         });
+        setMounts(finalOwnedData.concat(finalMissingData));
+      }
     };
-    if (searchResult) {
-      getOwnedMounts(searchResult);
-      getMissingMounts(searchResult);
-      ownedMounts.map((mount) => {
-        mount.isOwned = true;
-      });
-      missingMounts.map((mount) => {
-        mount.isOwned = false;
-      });
-      setMounts(ownedMounts.concat(missingMounts));
-    }
+    getMounts();
   }, [searchResult, activeMount]);
 
   useEffect(() => {
@@ -74,6 +77,7 @@ const Display = () => {
     setActiveMount(false);
     document.body.style.overflowY = "visible";
   };
+  // console.log({ mounts });
   return (
     <>
       <div
@@ -92,10 +96,10 @@ const Display = () => {
               return (
                 <Mount
                   mount={mount}
-                  owned={mount.isOwned}
-                  id={mount.id}
-                  icon={mount.icon}
-                  tooltip={mount.name}
+                  owned={mount?.isOwned}
+                  id={mount?.id}
+                  icon={mount?.icon}
+                  tooltip={mount?.name}
                   key={i}
                   onClick={setActiveMount}
                 />
